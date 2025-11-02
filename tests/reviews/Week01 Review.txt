@@ -19,10 +19,6 @@ Week02 Review:
         SEP Project
 
 
-Class starts at 10:05 AM EST
-
-
-
 Legacy Automation tools:
     API Libraries:
         RestAssured, RestSharp, Requests, HTTPX ...

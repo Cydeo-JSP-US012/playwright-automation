@@ -6,14 +6,14 @@ test("Simple google test", async ({page}) => {
 
     //await page.waitForTimeout(3000);
 
-    let searchBox = page.locator("textarea[id='APjFqb']");
+    //let searchBox = page.locator("textarea[id='APjFqb']");
 
     // await searchBox.type("CYDEO");
-    await searchBox.fill("CYDEO");
+   // await searchBox.fill("CYDEO");
 
     //await page.waitForTimeout(3000);
 
-    await searchBox.press("Enter");
+  //  await searchBox.press("Enter");
 
     //await page.waitForTimeout(3000);
 

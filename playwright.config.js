@@ -33,7 +33,7 @@ export default defineConfig({
         viewport: {width: 1850, height: 1080} 
        },
     },
-    
+
     
   /* 
 
@@ -82,19 +82,19 @@ export default defineConfig({
 
 */
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
 
-   
+ /*
+  Test against mobile
+     {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 5'] },
+    },
+
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 12'] },
+    },
+  */
   ],
 
 });
-
-
