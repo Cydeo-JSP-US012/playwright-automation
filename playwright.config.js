@@ -24,10 +24,10 @@ export default defineConfig({
   projects: [
 
     {
-      name: 'firefox',
+      name: 'chromium',
       use: { 
-        ...devices['Desktop Firefox'],
-        viewport: {width: 1850, height: 1000} 
+        ...devices['Desktop Chrome'],
+        viewport: {width: 1850, height: 1080} 
        },
     },
     
@@ -57,6 +57,26 @@ export default defineConfig({
         viewport: {width: 1850, height: 1000}  
       },
     },
+
+
+     {
+      name: 'Google Chrome',
+      use: { 
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        viewport: {width: 1850, height: 1080} 
+       },
+    },
+
+    {
+      name: 'Microsoft Edge',
+      use: { 
+        ...devices['Desktop Chrome'],
+        channel: 'msedge',
+        viewport: {width: 1850, height: 1080} 
+       },
+    },
+
 */
 
     /* Test against mobile viewports. */
@@ -69,16 +89,9 @@ export default defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
 
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+   
   ],
 
 });
 
+// come back at 11:35 AM EST
