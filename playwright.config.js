@@ -17,9 +17,9 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     //video: 'on-first-retry',
-    video: {'mode': 'on-first-retry', size: { width: 1920, height: 1080} },
+    video: {'mode': 'retain-on-failure', size: { width: 1920, height: 1080} },
     headless: false,
   },
 
