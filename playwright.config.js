@@ -12,11 +12,14 @@ export default defineConfig({
   workers: 4,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
+    //video: 'on-first-retry',
+    video: {'mode': 'on-first-retry', size: { width: 1920, height: 1080} },
     headless: false,
   },
 
@@ -94,4 +97,4 @@ export default defineConfig({
 
 });
 
-// come back at 11:35 AM EST
+
