@@ -2,13 +2,7 @@ import { test } from "@playwright/test";
 
 test("SEP Practice @sep", async ({ page }) => {
 
-    const ENCODED_CREDENTIALS = Buffer.from(`${process.env.SEP_USERNAME}:${process.env.SEP_PASSWORD}`).toString("base64");
-
-    await page.setExtraHTTPHeaders({
-        Authorization: `Basic ${ENCODED_CREDENTIALS}`
-    })
-
-    await page.goto(`${process.env.SEP_QA_URL}`);
+    CommonUI.loginToSEP(page);
 
     await page.waitForTimeout(3000);
 
@@ -19,15 +13,49 @@ test("SEP Practice @sep", async ({ page }) => {
     await page.waitForTimeout(3000);
 
     // Payment Plan Step:
+    CommonUI.completePaymentPlanStep(page, "upfront");
 
-    
+    await page.waitForTimeout(3000); 
 
+    // submit payment step:
+    let paymentFrame = page.frameLocator("//iframe[@title='Secure payment input frame']");
+
+    let cardNumberInput = paymentFrame.locator("//input[@id='Field-numberInput']");
+    await cardNumberInput.fill("4242424242424242");
+
+    let expiryDateInput = paymentFrame.locator("//input[@id='Field-expiryInput']");
+    await expiryDateInput.fill("01/30");
+
+    let cvvInput = paymentFrame.locator("//input[@id='Field-cvcInput']");
+    await cvvInput.fill("123");
+
+    let zipCodeInput = paymentFrame.locator("//input[@id='Field-postalCodeInput']");
+    await zipCodeInput.fill("12345");
+
+    let termsAndConditionsCheckbox = page.locator("//input[@id='defaultCheck2']");
+    await termsAndConditionsCheckbox.check();
+
+    let payButton = page.locator("//button[@type='button' and contains(@class, 'next-button')]");
+    await payButton.click();
+
+    await page.waitForTimeout(3000);
 
 
 });
 
 
+
 class CommonUI{
+
+    static async loginToSEP(page){
+        const ENCODED_CREDENTIALS = Buffer.from(`${process.env.SEP_USERNAME}:${process.env.SEP_PASSWORD}`).toString("base64");
+
+        await page.setExtraHTTPHeaders({
+            Authorization: `Basic ${ENCODED_CREDENTIALS}`
+        })
+
+        await page.goto(`${process.env.SEP_QA_URL}`);
+    }
 
     static async completeStartApplicationStep(page, firstName, lastName, email, phone){
         let firstNameInput = page.locator("//input[@formcontrolname='firstName']");
@@ -49,6 +77,29 @@ class CommonUI{
 
         let nextButton1 = page.locator("//button[@type='submit']");
         await nextButton1.click();
+    }
+
+    static async completePaymentPlanStep(page, paymentPlan ){
+
+        paymentPlan = paymentPlan.toLowerCase();
+
+        switch(paymentPlan){
+            case "upfront":
+                let upfrontPaymentPlanOption = page.locator("//mat-expansion-panel-header[@id='mat-expansion-panel-header-0']");
+                await upfrontPaymentPlanOption.click();
+                break;
+           
+            case "installment":
+            case "installments":
+                let installmentPaymentPlanOption = page.locator("///mat-expansion-panel-header[@id='mat-expansion-panel-header-1']");
+                await installmentPaymentPlanOption.click();
+                break;
+        }
+
+        let nextButton2 = page.locator("//button[@class='next-button' and text()='Next']");
+        await nextButton2.click();
+
+
     }
 
 }
