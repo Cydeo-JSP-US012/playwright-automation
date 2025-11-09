@@ -18,25 +18,8 @@ test("SEP Practice @sep", async ({ page }) => {
     await page.waitForTimeout(3000); 
 
     // submit payment step:
-    let paymentFrame = page.frameLocator("//iframe[@title='Secure payment input frame']");
 
-    let cardNumberInput = paymentFrame.locator("//input[@id='Field-numberInput']");
-    await cardNumberInput.fill("4242424242424242");
-
-    let expiryDateInput = paymentFrame.locator("//input[@id='Field-expiryInput']");
-    await expiryDateInput.fill("01/30");
-
-    let cvvInput = paymentFrame.locator("//input[@id='Field-cvcInput']");
-    await cvvInput.fill("123");
-
-    let zipCodeInput = paymentFrame.locator("//input[@id='Field-postalCodeInput']");
-    await zipCodeInput.fill("12345");
-
-    let termsAndConditionsCheckbox = page.locator("//input[@id='defaultCheck2']");
-    await termsAndConditionsCheckbox.check();
-
-    let payButton = page.locator("//button[@type='button' and contains(@class, 'next-button')]");
-    await payButton.click();
+    CommonUI.completeSubmitPaymentStep(page, "4242424242424242", "01/30", "123", "12345");
 
     await page.waitForTimeout(3000);
 
@@ -99,6 +82,30 @@ class CommonUI{
         let nextButton2 = page.locator("//button[@class='next-button' and text()='Next']");
         await nextButton2.click();
 
+
+    }
+
+    static async completeSubmitPaymentStep(page, cardNumber, expiryDate, securityCode, zipCode ){
+
+        let paymentFrame = page.frameLocator("//iframe[@title='Secure payment input frame']");
+
+        let cardNumberInput = paymentFrame.locator("//input[@id='Field-numberInput']");
+        await cardNumberInput.fill(cardNumber);
+
+        let expiryDateInput = paymentFrame.locator("//input[@id='Field-expiryInput']");
+        await expiryDateInput.fill(expiryDate);
+
+        let securityCodeInput = paymentFrame.locator("//input[@id='Field-cvcInput']");
+        await securityCodeInput.fill(securityCode);
+
+        let zipCodeInput = paymentFrame.locator("//input[@id='Field-postalCodeInput']");
+        await zipCodeInput.fill(zipCode);
+
+        let termsAndConditionsCheckbox = page.locator("//input[@id='defaultCheck2']");
+        await termsAndConditionsCheckbox.check();
+
+        let payButton = page.locator("//button[@type='button' and contains(@class, 'next-button')]");
+        await payButton.click();
 
     }
 
