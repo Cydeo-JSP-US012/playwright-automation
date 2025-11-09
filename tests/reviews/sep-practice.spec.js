@@ -25,6 +25,17 @@ test("SEP Practice @sep", async ({ page }) => {
 
     let phoneInput = page.locator("//input[@formcontrolname='phoneNumber']");
     await phoneInput.fill("05555555555");
-    
+
+    let howDidYouHearAboutUsDropDown = page.locator("//mat-label[text()='How did you hear about us?']");
+    await howDidYouHearAboutUsDropDown.click();
+
+    await page.click("//span[text()='Email']");
+
+    let nextButton1 = page.locator("//button[@type='submit']");
+    await nextButton1.click();
+
     await page.waitForTimeout(3000);
+
+
+
 });
