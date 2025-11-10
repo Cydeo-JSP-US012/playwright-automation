@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 
 test("SEP Practice @sep", async ({ page }) => {
 
@@ -110,3 +110,29 @@ class CommonUI{
     }
 
 }
+
+
+
+
+test('verify all links under ul tag are displayed and enabled @ai1', async ({ page }) => {
+  // Step 1 & 2: Open browser and navigate
+  await page.goto('https://practice.cydeo.com/');
+
+  // Step 3: Verify the page title is "Practice"
+  await expect(page).toHaveTitle('Practice');
+
+  // Step 4: Locate all the links under the ul tag using the given xpath locator
+  const links = page.locator("//ul[@class='list-group']/li/a");
+
+  // Step 5: Verify there are exactly 50 links
+  await expect(links).toHaveCount(50);
+
+  // Step 6: Verify all links are visible and enabled (clickable)
+  const count = await links.count();
+  for (let i = 0; i < count; i++) {
+    const link = links.nth(i);
+    await expect(link).toBeVisible();
+    await expect(link).toBeEnabled();
+  }
+});
+

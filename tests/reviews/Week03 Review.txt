@@ -21,7 +21,7 @@ Next Week:
 
     Write Test Cases
 
-    Live Class: Jenkins, demo,  fixtures: request & baseURL
+    Live Class: Jenkins, demo,  fixtures: request & baseURL, Browser, Context
 
 
 Next Next Week: Project Implementation Week
@@ -64,3 +64,55 @@ Keywords In Gherkin:
     
 
     #: for comments
+
+
+==============================
+
+Test case: verify that all the links under the ul tag are displayed and enabled.
+    step1: Open chrome browser
+    step2: Navigate to "https://practice.cydeo.com/"
+    step3: The title should be "Practice"
+    step4: Locate all the links under the ul HTML tag
+    step5: Verify there are exactly 50 links
+    step6: Verify all the links are visible and clickable 
+
+Here is the xpath locator for locating the links elements that are under the ul tag: 
+//ul[@class='list-group']/li/a
+
+
+Task: verify the next button is visible and clickable
+    step1: Open chrome browser
+    Step2: Navigate to the URL "https://www.example.com"
+    step3: Enter the username in username inputbox
+    step4: Enter the password in password inputbox
+    step5: Click login button
+    step6: verify that user is landed on home page
+    step7: verify that the next button on home page is visible and clickable
+
+
+Task: Send a get request and verify the status code, content-type, json body
+    Step 1: Set the base URL to "http://api.example.com"
+    Step 2: send a GET request to "/emapleEndPoint"
+    Step 3: Verify that status code is 200
+    Step 4: Verify that the content-type is application/json
+    Step 5: Verify that the id is "A05"
+    Step 6: Verify that the firtName is "Josh"
+    Step 7: Verify that the lastName is "Jeremy
+
+
+Task: Send a post request
+    Step 1: Set the base URL to "http://api.example.com"
+    Step 2: send a POST request to "/emapleEndPoint" with the body:
+    {
+    "firstname": "Muhtar",
+    "lastName": "Mahmut"
+    }
+    Step 3: Verify that status code is 201
+    Step 4: Verify that the content-type is application/json
+
+
+body:{
+    "firstname": "Muhtar",
+    "lastName": "Mahmut"
+}
+
